@@ -71,7 +71,7 @@ function cfg_boot(){
     arch_chroot "echo 'options root=/dev/sda2 rw' >> /boot/loader/entries/arch.conf"
 }
 function install_program(){
-    arch_chroot "pacman -S which git wget curl unrar unzip tar gcc make fakeroot binutils fontconfig pkgconf --noconfirm"
+    arch_chroot "pacman -S which git wget curl unrar unzip tar gcc make fontconfig --noconfirm"
 }
 function cfg_user(){
     # set root passwd
