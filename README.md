@@ -13,4 +13,16 @@
 
 之所以使用如此少的工具，是为了做到最小化安装，也防止版本更迭时，因工具产生的其他问题
 
+你可以使用`wget https://raw.githubusercontent.com/R0boter/ArchlinuxInstall/master/archInstall.sh`下载此脚本
+
 详细的脚本执行流程及注意事项，请参考我博客中的[这篇文章](https://roboter.ga/Archlinux-安装脚本)
+
+## Archlinux 桌面环境安装脚本
+
+此脚本是配和平铺式窗口管理器 DWM 使用的，如果您使用的是其他平铺式窗口管理器也可以使用，因为 dwm 的安装是单独分开的
+
+如果您不是使用的窗口管理器，而是使用的其他桌面环境，不建议您使用，但您可以作为参考，用于编写你自己的脚本
+
+你可以使用`wget https://raw.githubusercontent.com/R0boter/ArchlinuxInstall/master/archDesktop.sh`下载此脚本
+
+详细的脚本执行流程及脚本介绍，请参考我博客中的[这篇文章](https://roboter.ga/Archlinux-桌面环境安装脚本)
