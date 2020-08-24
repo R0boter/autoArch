@@ -49,7 +49,8 @@ function cfg_desktop(){
 
     rm ~/.bash*
 }
-function down_cfg(){
+function cfg_fun(){
+
     git clone https://github.com/R0boter/config.git
     git clone https://github.com/R0boter/dwm.git
     git clone https://github.com/R0boter/st.git
@@ -115,7 +116,7 @@ function programs_conf(){
 wait
 cfg_processor
 cfg_desktop
-down_cfg
+cfg_fun
 cfg_zh
 install_tools
 programs_conf
