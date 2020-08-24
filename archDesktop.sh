@@ -56,11 +56,11 @@ function down_cfg(){
     git clone https://github.com/R0boter/dmenu.git
 
     cp -r ./config/Wallpapers/* ~/Pictures/Wallpapers/
-    cp -r ./config/dunst ~/.config/dunst
-    cp -r ./config/fcitx5 ~/.config/fcitx5
-    cp -r ./config/mpv ~/.config/mpv
-    cp -r ./config/ranger ~/.config/ranger
-    cp -r ./config/xinitrc ~/.xinitrc
+    cp -r ./config/linux/dunst ~/.config/dunst
+    cp -r ./config/linux/fcitx5 ~/.config/fcitx5
+    cp -r ./config/linux/mpv ~/.config/mpv
+    cp -r ./config/linux/ranger ~/.config/ranger
+    cp -r ./config/linux/xinitrc ~/.xinitrc
 
     sudo cp -r ./config/fonts/fira-code-nerd /usr/share/fonts/fira-code-nerd 
     sudo cp ./config/fonts/local.conf /etc/fonts/local.conf
@@ -73,6 +73,8 @@ function down_cfg(){
 
     cd ../dmenu
     sudo make clean install
+
+    cd ..
 
     rm -rf ./config
     rm -rf ./dwm
@@ -97,9 +99,6 @@ function install_tools(){
     sudo pacman -Syu
     sudo pacman -S ranger ueberzug mpv xcompmgr feh patch firefox dunst libnotify --noconfirm
     sudo pacman -Scc
-}
-function programs_install(){
-    sudo pacman -S virtualbox virtualbox-host-modules-arch --noconfirm
 }
 function programs_conf(){
     sudo pacman -S nodejs-lts-erbium yarn python python-pip --noconfirm
