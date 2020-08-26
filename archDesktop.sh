@@ -82,7 +82,7 @@ function cfg_fun(){
     rm -rf ./dmenu
     rm -rf ./st
     
-    wget -O https://raw.githubusercontent.com/R0boter/mynvim/master/init.vim ~/.config/nvim/init.vim
+    git clone https://github.com/r0boter/mynvim.git ~/.config/nvim
 
 }
 function cfg_zh(){
