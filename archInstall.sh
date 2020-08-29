@@ -92,7 +92,7 @@ function cfg_net(){
     ip link
     read -p "This is your interface info，Do you have a wifi interface?[y/n](default:y): " chk
     if [[ -z $chk || $chk == "y" || $chk == "Y" ]];then
-        pacstrap /mnt wpa_supplicant
+        pacstrap /mnt wpa_supplicant bluez bluez-utils
         arch_chroot "echo '[Match]' > /etc/systemd/network/25-wireless.network"
         arch_chroot "echo 'Name=wl*' >> /etc/systemd/network/25-wireless.network"
         arch_chroot "echo '[Network]' >> /etc/systemd/network/25-wireless.network"
