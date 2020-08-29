@@ -31,7 +31,7 @@ function cfg_processor(){
 }
 
 function cfg_desktop(){
-    sudo pacman -S xorg-server xorg-xinit xclip xorg-xsetroot alsa-utils --noconfirm
+    sudo pacman -S xorg-server xorg-xinit xclip xorg-xsetroot xorg-xrandr alsa-utils --noconfirm
     for i in `seq 5`;do
         sudo sed -i '$d' /etc/X11/xinit/xinitrc
     done
@@ -121,4 +121,3 @@ cfg_zh
 install_tools
 programs_conf
 
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
