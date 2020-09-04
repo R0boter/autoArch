@@ -114,7 +114,7 @@ function install_tools(){
     sudo pacman -Scc
 }
 function programs_conf(){
-    sudo pacman -S nodejs-lts-erbium yarn python python-pip --noconfirm
+    sudo pacman -S nodejs-lts-erbium yarn python python-pip jdk --noconfirm
     
     yarn config set registry https://registry.yarn.taobao.org
     sudo yarn config set registry https://registry.yarn.taobao.org
