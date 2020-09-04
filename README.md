@@ -1,6 +1,6 @@
 # 简介
 
-此仓库存放的主要是我在 ArchLinux 下的一些脚本，包括
+此仓库存放的主要是我在 ArchLinux 下的安装脚本，包括
 
 1. archlinux 安装脚本
 2. archlinux 桌面环境安装和配置脚本
