@@ -55,12 +55,16 @@ function cfg_fun(){
     git clone https://github.com/R0boter/dwm.git
     git clone https://github.com/R0boter/st.git
     git clone https://github.com/R0boter/dmenu.git
+    git clone https://github.com/R0boter/slock.git
+    git clone https://github.com/R0boter/wmname.git
 
     cp -r ./config/Wallpapers/* ~/Pictures/Wallpapers/
     cp -r ./config/linux/dunst ~/.config/dunst
     cp -r ./config/linux/fcitx5 ~/.config/fcitx5
     cp -r ./config/linux/mpv ~/.config/mpv
     cp -r ./config/linux/ranger ~/.config/ranger
+    cp -r ./config/linux/zim ~/.config/zim
+    cp -r ./config/linux/zim/zshrc ~/.zshrc
     cp -r ./config/linux/xinitrc ~/.xinitrc
 
     sudo cp -r ./config/fonts/fira-code-nerd /usr/share/fonts/fira-code-nerd 
@@ -75,12 +79,20 @@ function cfg_fun(){
     cd ../dmenu
     sudo make clean install
 
+    cd ../slock
+    sudo make clean install
+
+    cd ../wmname
+    sudo make clean install
+
     cd ..
 
     rm -rf ./config
     rm -rf ./dwm
     rm -rf ./dmenu
     rm -rf ./st
+    rm -rf ./slock
+    rm -rf ./wmname
     
     git clone https://github.com/r0boter/mynvim.git ~/.config/nvim
 
