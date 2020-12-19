@@ -26,13 +26,7 @@ function cfg_mirror(){
     sed -i 's/^#Server/Server/g' ./mirrorlist
     mv -f ./mirrorlist /etc/pacman.d/mirrorlist
     chmod 644 /etc/pacman.d/mirrorlist
-    # Add archlinucn sources,The default source is USTC
-    echo '[archlinuxcn]' >> /etc/pacman.conf
-    echo 'SigLevel = Optional TrustedOnly' >> /etc/pacman.conf
-    echo 'Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch' >> /etc/pacman.conf
-    echo '#Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch' >> /etc/pacman.conf
-    echo '#Server = http://mirrors.163.com/archlinux-cn/$arch' >> /etc/pacman.conf
-    echo '#Server = http://repo.archlinuxcn.org/$arch' >> /etc/pacman.conf
+
 }
 function install_base(){
     pacstrap /mnt base linux linux-firmware sudo zsh neovim archlinuxcn-keyring
@@ -124,8 +118,8 @@ function cfg_net(){
     read -p "Please remember this file location!!! Press any key......"
 
     # set DNS server in /etc/resolv.conf
-    arch_chroot "echo 'nameserver 114.114.114.114' > /etc/resolv.conf"
-    arch_chroot "echo 'nameserver 8.8.8.8' >> /etc/resolv.conf"
+    arch_chroot "sed -i '$a nameserver 114.114.114.114' /etc/resolv.conf"
+    arch_chroot "sed -i '$a nameserver 8.8.8.8' /etc/resolv.conf"
     # read -p "Do you want to connect to WIFI?[y/n](default:y):  " wifi_chk
     # if [[ -z $wifi_chk || $wifi_chk == "y" || $wifi_chk == "Y" ]];then
     #     read -p "Please enter your wifi-name：  " wifiname
@@ -140,7 +134,15 @@ function cfg_net(){
     #     arch_chroot "wpa_passphrase ${ssid} ${passphrase} >> /etc/wpa_supplicant/wpa_supplicant.conf"
     # fi
 }
-
+function add_source(){
+    # Add archlinucn sources,The default source is USTC
+    arch_chroot "echo '[archlinuxcn]' >> /etc/pacman.conf"
+    arch_chroot "echo 'SigLevel = Optional TrustedOnly' >> /etc/pacman.conf"
+    arch_chroot "echo 'Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch' >> /etc/pacman.conf"
+    arch_chroot "echo '#Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch' >> /etc/pacman.conf"
+    arch_chroot "echo '#Server = http://mirrors.163.com/archlinux-cn/$arch' >> /etc/pacman.conf"
+    arch_chroot "echo '#Server = http://repo.archlinuxcn.org/$arch' >> /etc/pacman.conf"
+}
 timedatectl set-ntp true
 chk_uefi
 read -p "Are you sure format your sda[y/n]: " sure_str
@@ -157,3 +159,4 @@ cfg_boot
 cfg_user
 cfg_autologin
 cfg_net
+add_source
