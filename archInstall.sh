@@ -26,15 +26,21 @@ function cfg_mirror(){
     sed -i 's/^#Server/Server/g' ./mirrorlist
     mv -f ./mirrorlist /etc/pacman.d/mirrorlist
     chmod 644 /etc/pacman.d/mirrorlist
-    # Add archlinucn sources,The default source is 163
+    # Add archlinucn sources,The default source is USTC
     echo '[archlinuxcn]' >> /etc/pacman.conf
     echo 'SigLevel = Optional TrustedOnly' >> /etc/pacman.conf
-    echo 'Server = http://mirrors.163.com/archlinux-cn/$arch' >> /etc/pacman.conf
+    echo 'Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch' >> /etc/pacman.conf
     echo '#Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch' >> /etc/pacman.conf
-    echo '#Server   = http://repo.archlinuxcn.org/$arch' >> /etc/pacman.conf
+    echo '#Server = http://mirrors.163.com/archlinux-cn/$arch' >> /etc/pacman.conf
+    echo '#Server = http://repo.archlinuxcn.org/$arch' >> /etc/pacman.conf
 }
 function install_base(){
-    pacstrap /mnt base linux linux-firmware sudo zsh neovim
+    pacstrap /mnt base linux linux-firmware sudo zsh neovim archlinuxcn-keyring
+    wait
+}
+function install_program(){
+    arch_chroot "pacman -S which git wget curl unrar unzip tar gcc make fontconfig --noconfirm"
+    wait
 }
 function cfg_system(){
     # creat fstab file
@@ -70,13 +76,10 @@ function cfg_boot(){
     arch_chroot "echo 'initrd  /initramfs-linux.img' >> /boot/loader/entries/arch.conf"
     arch_chroot "echo 'options root=/dev/sda2 rw' >> /boot/loader/entries/arch.conf"
 }
-function install_program(){
-    arch_chroot "pacman -S which git wget curl unrar unzip tar gcc make fontconfig --noconfirm"
-}
 function cfg_user(){
     # set root passwd
     arch_chroot "echo 'root:toor' | chpasswd"
-    # creat normal user raven and set passwd
+    # creat normal user username and set passwd
     arch_chroot "useradd -m -g users -s /usr/bin/zsh -G wheel,uucp username && echo 'username:passwd' | chpasswd"
     # set sudo file
     arch_chroot "sed -i '/NOPASSWD/s/^#\ //' /etc/sudoers"
@@ -103,7 +106,6 @@ function cfg_net(){
         arch_chroot "echo 'update_config=1' >> /etc/wpa_supplicant/wpa_supplicant.conf"
         arch_chroot "echo 'fast_reauth=1' >> /etc/wpa_supplicant/wpa_supplicant.conf"
         arch_chroot "echo 'ap_scan=1' >> /etc/wpa_supplicant/wpa_supplicant.conf"
-        clear
 
         echo "Now the wireless configuration complete and configfile is /etc/systemd/network/25-wireless.network"
         echo "and wpa_supplicant generates WIFI configuration file is /etc/wpa_supplicant/wpa_supplicant.conf"
@@ -122,8 +124,8 @@ function cfg_net(){
     read -p "Please remember this file location!!! Press any key......"
 
     # set DNS server in /etc/resolv.conf
-    echo 'nameserver 114.114.114.114' > /mnt/etc/resolv.conf
-    echo 'nameserver 8.8.8.8' >> /mnt/etc/resolv.conf
+    arch_chroot "echo 'nameserver 114.114.114.114' > /etc/resolv.conf"
+    arch_chroot "echo 'nameserver 8.8.8.8' >> /etc/resolv.conf"
     # read -p "Do you want to connect to WIFI?[y/n](default:y):  " wifi_chk
     # if [[ -z $wifi_chk || $wifi_chk == "y" || $wifi_chk == "Y" ]];then
     #     read -p "Please enter your wifi-name：  " wifiname
@@ -149,9 +151,9 @@ fi
 format_disk
 cfg_mirror
 install_base
+install_program
 cfg_system
 cfg_boot
-install_program
 cfg_user
 cfg_autologin
 cfg_net
