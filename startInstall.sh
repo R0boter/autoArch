@@ -15,10 +15,10 @@ timedatectl set-ntp true
 ls /sys/firmware/efi/efivars >/dev/null 2>&1
 if [ $? -eq 0 ]
 then
-    echo "Your system is boot with UEFI! It's great!!!"
-    read -p "Let's start your archlife!!!，If your are not ready，you can use ctrl-c to end!!!"
+    echo "::==>> Your system is boot with UEFI! It's great!!!"
+    read -p "::==>> Let's start your archlife!!!，If your are not ready，you can use ctrl-c to end!!!\n"
 
-    read -p "Are you sure format your sda[y/n]: " sure_str
+    read -p "::==>> Are you sure format your sda[y/n]: " sure_str
     if [[ $sure_str != "y" && $sure_str != "Y" ]]
     then
         exit 0
@@ -47,6 +47,6 @@ then
     wait
     arch-chroot /mnt /bin/bash -c "/baseInstall.sh"
 else
-    echo "Sorry! Please use UEFI to boot your system!!!"
+    echo "::==>> Sorry! Please use UEFI to boot your system!!!"
     exit 0
 fi
