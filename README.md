@@ -2,8 +2,13 @@
 
 此仓库存放的主要是我在 ArchLinux 下的安装脚本，包括
 
-1. archlinux 安装脚本
-2. archlinux 桌面环境安装和配置脚本
+1. startInstall 环境初始化，和加载安装脚本
+2. baseInstall 系统安装和配置脚本
+2. desktopInstall 桌面环境安装和配置脚本
+
+## 初始化脚本
+
+用于检测是否是 UEFI 启动、同步硬件时间和格式化硬以及安装最基础的 Archlinux 系统
 
 ## Archlinux 安装脚本
 
