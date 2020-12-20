@@ -1,11 +1,13 @@
 #!/bin/bash
 
-cat <<EOF
+cat <<'EOF'
+
     _         _             _             _     _           _        _ _
    / \  _   _| |_ ___      / \   _ __ ___| |__ (_)_ __  ___| |_ __ _| | |
   / _ \| | | | __/ _ \    / _ \ | '__/ __| '_ \| | '_ \/ __| __/ _` | | |
  / ___ \ |_| | || (_) |  / ___ \| | | (__| | | | | | | \__ \ || (_| | | |
 /_/   \_\__,_|\__\___/  /_/   \_\_|  \___|_| |_|_|_| |_|___/\__\__,_|_|_|
+
 EOF
 
 timedatectl set-ntp true
@@ -39,6 +41,8 @@ then
     # creat fstab file
     genfstab -U /mnt >> /mnt/etc/fstab
     # root change to /mnt
+    cp ./baseInstall.sh /mnt/baseInstall.sh
+    wait
     arch-chroot /mnt /bin/bash -c "/baseInstall.sh"
 else
     echo "Sorry! Please use UEFI to boot your system!!!"

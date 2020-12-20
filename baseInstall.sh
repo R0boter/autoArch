@@ -23,7 +23,7 @@ else
 fi
 
 # set locale hosts file
-cat >> /etc/hosts <<EOF
+cat >> /etc/hosts <<'EOF'
 
 # GitHub Start
 52.74.223.119 github.com
@@ -59,13 +59,13 @@ sed -i '/Color/a\ILoveCandy' /etc/pacman.conf
 bootctl --path=/boot install
 wait
 
-cat > /boot/loader/loader.conf <<EOF
+cat > /boot/loader/loader.conf <<'EOF'
 #timeout 3
 #console-mode keep
 default arch
 EOF
 
-cat > /boot/loader/entries/arch.conf <<EOF
+cat > /boot/loader/entries/arch.conf <<'EOF'
 title    Arch Linux
 linux   /vmlinuz-linux
 initrd  /initramfs-linux.img
@@ -90,30 +90,34 @@ sed -i '/NOPASSWD/s/^#\ //' /etc/sudoers
 
 # set autologin
 mkdir /etc/systemd/system/getty@tty1.service.d/
-cat > /etc/systemd/system/getty@tty1.service.d/override.conf <<EOF
+#echo '[Service]' > /etc/systemd/system/getty@tty1.service.d/override.conf
+#echo 'ExecSrtart=' >> /etc/systemd/system/getty@tty1.service.d/override.conf
+#echo "ExecStart=-/usr/bin/agetty --autologin $uname --noclear" >> /etc/systemd/system/getty@tty1.service.d/override.conf
+cat > /etc/systemd/system/getty@tty1.service.d/override.conf <<'EOF'
 [Service]
 ExecStart=
-ExecStart=-/usr/bin/agetty --autologin username --noclear %I \$TERM
+ExecStart=-/usr/bin/agetty --autologin $uname --noclear %I \$TERM
 EOF
+clear
 
 # set network
 read -p "Do you have a wifi interface?[y/n](default:y): " chk
 if [[ -z $chk || $chk == "y" || $chk == "Y" ]];then
     pacman -S wpa_supplicant bluez bluez-utils --noconfirm
-    cat > /etc/systemd/network/25-wireless.network <<EOF
+    cat > /etc/systemd/network/25-wireless.network <<'EOF'
 [Match]
 Name=wl*
 [Network]
 DHCP=ipv4
 EOF
-    cat > /etc/wpa_supplicant/wpa_supplicant.conf <<EOF
+    cat > /etc/wpa_supplicant/wpa_supplicant.conf <<'EOF'
 ctrl_interface=/var/run/wpa_supplicant
 ctrl_interface_group=wheel
 update_config=1
 fast_reauth=1
 ap_scan=1
 EOF
-    cat <<EOF
+    cat <<'EOF'
 Now the wireless configuration complete and configfile is /etc/systemd/network/25-wireless.network
 And wpa_supplicant generates WIFI configuration file is /etc/wpa_supplicant/wpa_supplicant.conf
 When you want to connect to WIFI，
@@ -122,7 +126,7 @@ Use command 'wpa_supplicant -B -i <interface> -c /etc/wpa_supplicant/wpa_supplic
 EOF
     read -p "Please remember these files location!!! Press any key......"
 fi
-cat > /etc/systemd/network/20-wired.network <<EOF
+cat > /etc/systemd/network/20-wired.network <<'EOF'
 [Match]
 Name=en*
 [Network]
@@ -130,15 +134,17 @@ DHCP=ipv4
 EOF
 systemctl enable systemd-networkd
 
-cat <<EOF
+cat <<'EOF'
 Now the wire-interface configuration complete and configfile is /etc/systemd/network/20-wired.network
 If you have your own DHCP server，you need change the .network configfile，and enable systemd-resolved.service
 EOF
 read -p "Please remember this file location!!! Press any key......"
 
 # set DNS server in /etc/resolv.conf
-sed -i '$a nameserver 114.114.114.114' /etc/resolv.conf
-sed -i '$a nameserver 8.8.8.8' /etc/resolv.conf
+cat > /etc/resolv.conf <<'EOF'
+nameserver 114.114.114.114
+nameserver 8.8.8.8
+EOF
 
 # read -p "Do you want to connect to WIFI?[y/n](default:y):  " wifi_chk
 # if [[ -z $wifi_chk || $wifi_chk == "y" || $wifi_chk == "Y" ]];then
@@ -154,11 +160,22 @@ sed -i '$a nameserver 8.8.8.8' /etc/resolv.conf
 #     arch_chroot "wpa_passphrase ${ssid} ${passphrase} >> /etc/wpa_supplicant/wpa_supplicant.conf"
 # fi
 # Add archlinucn sources,The default source is USTC
-cat >> /etc/pacman.conf <<EOF
+cat >> /etc/pacman.conf <<'EOF'
 [archlinuxcn]
-SigLevel = Optional TrustedOnly
-Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
-#Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
-#Server = http://mirrors.163.com/archlinux-cn/$arch
-#Server = http://repo.archlinuxcn.org/$arch
+#SigLevel = Optional TrustedOnly
+Server = https://mirrors.ustc.edu.cn/archlinuxcn/\$arch
+#Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/\$arch
+#Server = http://mirrors.163.com/archlinux-cn/\$arch
+#Server = http://repo.archlinuxcn.org/\$arch
+EOF
+rm /baseInstall.sh
+clear
+cat <<'EOF'
+ _   _                 _____        _       _         ___ _     _
+| \ | | _____      __ | ____|_ __  (_) ___ (_)_ __   |_ _| |_  | |
+|  \| |/ _ \ \ /\ / / |  _| | '_ \ | |/ _ \| | '_ \   | || __| | |
+| |\  | (_) \ V  V /  | |___| | | || | (_) | | | | |  | || |_  |_|
+|_| \_|\___/ \_/\_/   |_____|_| |_|/ |\___/|_|_| |_| |___|\__| (_)
+                                 |__/
+
 EOF
