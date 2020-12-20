@@ -88,10 +88,11 @@ echo "::==>> You need enter the username, Usually 5-8 characters!!!"
 read -p "::==>> Please set your username : " uname
 done
 
+echo "::==>> You need enter the password, Usually 5-16 characters!!!"
 read -p "::==>> Please set your password : " upass
 while [[ -z $upass ]]
 do
-echo "::==>> You need enter the userpassword !!!"
+echo "::==>> You need enter the password, Usually 5-16 characters!!!"
 read -p "::==>> Please set your password : " upass
 done
 
@@ -102,7 +103,7 @@ sed -i '/NOPASSWD/s/^#\ //' /etc/sudoers
 
 # set autologin
 mkdir /etc/systemd/system/getty@tty1.service.d/
-cat <<EOF > /etc/systemd/system/getty@tty1.service.d/override.conf
+cat > /etc/systemd/system/getty@tty1.service.d/override.conf <<EOF
 [Service]
 ExecSrtart=
 ExecStart=-/usr/bin/agetty --autologin $uname --noclear
