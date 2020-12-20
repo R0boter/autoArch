@@ -1,23 +1,23 @@
 #!/bin/bash
 
-cat <<'EOF'
-
-    _         _             _             _     _           _        _ _
-   / \  _   _| |_ ___      / \   _ __ ___| |__ (_)_ __  ___| |_ __ _| | |
-  / _ \| | | | __/ _ \    / _ \ | '__/ __| '_ \| | '_ \/ __| __/ _` | | |
- / ___ \ |_| | || (_) |  / ___ \| | | (__| | | | | | | \__ \ || (_| | | |
-/_/   \_\__,_|\__\___/  /_/   \_\_|  \___|_| |_|_|_| |_|___/\__\__,_|_|_|
-
-EOF
-
 timedatectl set-ntp true
 # check your boot mode, this script only supports uefi boot mode
 ls /sys/firmware/efi/efivars >/dev/null 2>&1
 if [ $? -eq 0 ]
 then
-    echo "::==>> Your system is boot with UEFI! It's great!!!"
-    read -p "::==>> Let's start your archlife!!!，If your are not ready，you can use ctrl-c to end!!!\n"
 
+    cat <<'EOF'
+
+        _         _             _             _     _           _        _ _
+       / \  _   _| |_ ___      / \   _ __ ___| |__ (_)_ __  ___| |_ __ _| | |
+      / _ \| | | | __/ _ \    / _ \ | '__/ __| '_ \| | '_ \/ __| __/ _` | | |
+     / ___ \ |_| | || (_) |  / ___ \| | | (__| | | | | | | \__ \ || (_| | | |
+    /_/   \_\__,_|\__\___/  /_/   \_\_|  \___|_| |_|_|_| |_|___/\__\__,_|_|_|
+
+   ::==>> Your system is boot with UEFI! It's great!!!
+   ::==>> Let's start your archlife!!!，If your are not ready，you can use ctrl-c to end!!!
+
+EOF
     read -p "::==>> Are you sure format your sda[y/n]: " sure_str
     if [[ $sure_str != "y" && $sure_str != "Y" ]]
     then
