@@ -106,7 +106,7 @@ mkdir /etc/systemd/system/getty@tty1.service.d/
 cat > /etc/systemd/system/getty@tty1.service.d/override.conf <<EOF
 [Service]
 ExecSrtart=
-ExecStart=-/usr/bin/agetty --autologin $uname --noclear
+ExecStart=-/usr/bin/agetty --autologin $uname --noclear %I \$TERM
 EOF
 #echo '[Service]' > /etc/systemd/system/getty@tty1.service.d/override.conf
 #echo 'ExecSrtart=' >> /etc/systemd/system/getty@tty1.service.d/override.conf
