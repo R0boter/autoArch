@@ -90,14 +90,9 @@ sed -i '/NOPASSWD/s/^#\ //' /etc/sudoers
 
 # set autologin
 mkdir /etc/systemd/system/getty@tty1.service.d/
-#echo '[Service]' > /etc/systemd/system/getty@tty1.service.d/override.conf
-#echo 'ExecSrtart=' >> /etc/systemd/system/getty@tty1.service.d/override.conf
-#echo "ExecStart=-/usr/bin/agetty --autologin $uname --noclear" >> /etc/systemd/system/getty@tty1.service.d/override.conf
-cat > /etc/systemd/system/getty@tty1.service.d/override.conf <<'EOF'
-[Service]
-ExecStart=
-ExecStart=-/usr/bin/agetty --autologin $uname --noclear %I \$TERM
-EOF
+echo '[Service]' > /etc/systemd/system/getty@tty1.service.d/override.conf
+echo 'ExecSrtart=' >> /etc/systemd/system/getty@tty1.service.d/override.conf
+echo "ExecStart=-/usr/bin/agetty --autologin $uname --noclear" >> /etc/systemd/system/getty@tty1.service.d/override.conf
 clear
 
 # set network

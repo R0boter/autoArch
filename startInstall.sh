@@ -41,7 +41,9 @@ then
     # creat fstab file
     genfstab -U /mnt >> /mnt/etc/fstab
     # root change to /mnt
+    chmod +x baseInstall.sh
     cp ./baseInstall.sh /mnt/baseInstall.sh
+
     wait
     arch-chroot /mnt /bin/bash -c "/baseInstall.sh"
 else
