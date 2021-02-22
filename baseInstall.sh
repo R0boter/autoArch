@@ -129,6 +129,7 @@ ap_scan=1
 EOF
 
 fi
+
 cat > /etc/systemd/network/20-wired.network <<'EOF'
 [Match]
 Name=en*

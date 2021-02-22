@@ -52,24 +52,31 @@ function cfg_desktop(){
 function cfg_fun(){
 
     git clone https://github.com/R0boter/config.git
+    wait
     git clone https://github.com/R0boter/dwm.git
+    wait
     git clone https://github.com/R0boter/st.git
+    wait
     git clone https://github.com/R0boter/dmenu.git
+    wait
     git clone https://github.com/R0boter/slock.git
+    wait
     git clone https://github.com/R0boter/wmname.git
+    wait
 
     cp -r ./config/Wallpapers/* ~/Pictures/Wallpapers/
-    cp -r ./config/linux/dunst ~/.config/dunst
-    cp -r ./config/linux/fcitx5 ~/.config/fcitx5
-    cp -r ./config/linux/mpv ~/.config/mpv
-    cp -r ./config/linux/ranger ~/.config/ranger
-    cp -r ./config/linux/zim ~/.config/zim
-    cp -r ./config/linux/zim/zshrc ~/.zshrc
-    cp -r ./config/linux/xinitrc ~/.xinitrc
+    cp -r ./config/dunst ~/.config/dunst
+    cp -r ./config/fcitx5 ~/.config/fcitx5
+    cp -r ./config/mpv ~/.config/mpv
+    cp -r ./config/ranger ~/.config/ranger
+    cp -r ./config/zim ~/.config/zim
+    cp -r ./config/nvim ~/.config/nvim
+    cp -r ./config/zim/zshrc ~/.zshrc
+    cp -r ./config/xinitrc ~/.xinitrc
 
-    sudo cp -r ./config/fonts/fira-code-nerd /usr/share/fonts/fira-code-nerd 
+    sudo cp -r ./config/fonts/fira-code-nerd /usr/share/fonts/fira-code-nerd
     sudo cp ./config/fonts/local.conf /etc/fonts/local.conf
-    
+
     cd ./dwm
     sudo make clean install
 
@@ -93,8 +100,7 @@ function cfg_fun(){
     rm -rf ./st
     rm -rf ./slock
     rm -rf ./wmname
-    
-    git clone https://github.com/r0boter/mynvim.git ~/.config/nvim
+
 
 }
 function cfg_zh(){
@@ -114,10 +120,7 @@ function install_tools(){
     sudo pacman -Scc
 }
 function programs_conf(){
-    sudo pacman -S nodejs-lts-erbium yarn python python-pip jdk --noconfirm
-    
-    yarn config set registry https://registry.yarn.taobao.org
-    sudo yarn config set registry https://registry.yarn.taobao.org
+    sudo pacman -S nodejs-lts-erbium python3 python3-pip --noconfirm
 
     mkdir ~/.pip
     echo "[global]" > ~/.pip/pip.conf
@@ -132,4 +135,3 @@ cfg_fun
 cfg_zh
 install_tools
 programs_conf
-
