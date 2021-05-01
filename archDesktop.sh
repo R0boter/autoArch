@@ -101,6 +101,9 @@ function cfg_fun(){
     rm -rf ./slock
     rm -rf ./wmname
 
+    # set nvim editor
+    ln -s /usr/bin/nvim /usr/bin/vi
+    ln -s /usr/bin/nvim /usr/bin/vim
 
 }
 function cfg_zh(){

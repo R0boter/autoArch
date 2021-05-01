@@ -47,10 +47,6 @@ cat >> /etc/hosts <<'EOF'
 # GitHub End
 EOF
 
-# set nvim editor
-ln -s /usr/bin/nvim /usr/bin/vi
-ln -s /usr/bin/nvim /usr/bin/vim
-
 # enable pacman color
 sed -i 's/#Color/Color/g' /etc/pacman.conf
 sed -i '/Color/a\ILoveCandy' /etc/pacman.conf
@@ -139,12 +135,6 @@ EOF
 systemctl enable systemd-networkd
 clear
 
-# set DNS server in /etc/resolv.conf
-cat > /etc/resolv.conf <<'EOF'
-nameserver 114.114.114.114
-nameserver 8.8.8.8
-EOF
-
 # read -p "Do you want to connect to WIFI?[y/n](default:y):  " wifi_chk
 # if [[ -z $wifi_chk || $wifi_chk == "y" || $wifi_chk == "Y" ]];then
 #     read -p "Please enter your wifi-name：  " wifiname
@@ -158,15 +148,16 @@ EOF
 
 #     arch_chroot "wpa_passphrase ${ssid} ${passphrase} >> /etc/wpa_supplicant/wpa_supplicant.conf"
 # fi
+
 # Add archlinucn sources,The default source is USTC
-cat >> /etc/pacman.conf <<'EOF'
-[archlinuxcn]
-#SigLevel = Optional TrustedOnly
-Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
-#Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
-#Server = http://mirrors.163.com/archlinux-cn/$arch
-#Server = http://repo.archlinuxcn.org/$arch
-EOF
+# cat >> /etc/pacman.conf <<'EOF'
+# [archlinuxcn]
+# #SigLevel = Optional TrustedOnly
+# Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+# #Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+# #Server = http://mirrors.163.com/archlinux-cn/$arch
+# #Server = http://repo.archlinuxcn.org/$arch
+# EOF
 rm /baseInstall.sh
 clear
 cat <<EOF

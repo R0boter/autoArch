@@ -36,14 +36,18 @@ EOF
     mv -f ./mirrorlist /etc/pacman.d/mirrorlist
     chmod 644 /etc/pacman.d/mirrorlist
     # Install the base system
-    pacstrap /mnt base linux linux-firmware sudo zsh neovim
+    pacstrap /mnt base linux linux-firmware sudo zsh
     wait
     # creat fstab file
     genfstab -U /mnt >> /mnt/etc/fstab
     # root change to /mnt
     chmod +x baseInstall.sh
     cp ./baseInstall.sh /mnt/baseInstall.sh
-
+    # set DNS server in /etc/resolv.conf
+    cat > /etc/resolv.conf <<'EOF'
+nameserver 114.114.114.114
+nameserver 8.8.8.8
+EOF
     wait
     arch-chroot /mnt /bin/bash -c "/baseInstall.sh"
 else
