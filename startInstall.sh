@@ -44,7 +44,7 @@ EOF
     chmod +x baseInstall.sh
     cp ./baseInstall.sh /mnt/baseInstall.sh
     # set DNS server in /etc/resolv.conf
-    cat > /etc/resolv.conf <<'EOF'
+    cat > /mnt/etc/resolv.conf <<'EOF'
 nameserver 114.114.114.114
 nameserver 8.8.8.8
 EOF
