@@ -53,15 +53,7 @@ function cfg_fun(){
 
     git clone https://github.com/R0boter/config.git
     wait
-    git clone https://github.com/R0boter/dwm.git
-    wait
-    git clone https://github.com/R0boter/st.git
-    wait
-    git clone https://github.com/R0boter/dmenu.git
-    wait
-    git clone https://github.com/R0boter/slock.git
-    wait
-    git clone https://github.com/R0boter/wmname.git
+    git clone https://github.com/R0boter/Suckless.git
     wait
 
     cp -r ./config/Wallpapers/* ~/Pictures/Wallpapers/
@@ -77,7 +69,7 @@ function cfg_fun(){
     sudo cp -r ./config/fonts/fira-code-nerd /usr/share/fonts/fira-code-nerd
     sudo cp ./config/fonts/local.conf /etc/fonts/local.conf
 
-    cd ./dwm
+    cd ./Suckless/dwm
     sudo make clean install
 
     cd ../st
@@ -92,14 +84,10 @@ function cfg_fun(){
     cd ../wmname
     sudo make clean install
 
-    cd ..
+    cd ../../
 
     rm -rf ./config
-    rm -rf ./dwm
-    rm -rf ./dmenu
-    rm -rf ./st
-    rm -rf ./slock
-    rm -rf ./wmname
+    rm -rf ./Suckless
 
     # set nvim editor
     ln -s /usr/bin/nvim /usr/bin/vi
