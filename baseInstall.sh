@@ -1,6 +1,6 @@
 #!/bin/bash
 # install some base programs
-pacman -S which git wget curl unrar unzip tar gcc make fontconfig --noconfirm
+pacman -S man-db  which texinfo git wget curl unrar unzip tar gcc make fontconfig --noconfirm
 wait
 
 # set time zone
@@ -24,6 +24,10 @@ fi
 
 # set locale hosts file
 cat >> /etc/hosts <<'EOF'
+
+127.0.0.1   localhost
+::1         localhost
+127.0.1.1   "$hostname".localdomain    "$hostname"
 
 # GitHub Start
 52.74.223.119 github.com
@@ -150,15 +154,14 @@ clear
 # fi
 
 # Add archlinucn sources,The default source is USTC
-# cat >> /etc/pacman.conf <<'EOF'
-# [archlinuxcn]
-# #SigLevel = Optional TrustedOnly
-# Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+ cat >> /etc/pacman.conf <<'EOF'
+[archlinuxcn]
+#SigLevel = Optional TrustedOnly
+Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 # #Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
-# #Server = http://mirrors.163.com/archlinux-cn/$arch
-# #Server = http://repo.archlinuxcn.org/$arch
-# EOF
+EOF
 rm /baseInstall.sh
+pacman -Sy
 clear
 cat <<EOF
  _   _                 _____        _       _         ___ _     _
