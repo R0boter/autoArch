@@ -28,6 +28,8 @@ EOF
     parted /dev/sda mkpart EFI fat32 1MB 513MB
     parted /dev/sda set 1 esp on
     parted /dev/sda mkpart System btrfs 513MB 100%
+    mkfs.fat -F32 /dev/sda1
+    mkfs.btrfs -f /dev/sda2
     mount /dev/sda2 /mnt && mkdir /mnt/boot && mount /dev/sda1 /mnt/boot
     # config your mirror source file
     mv -f /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
