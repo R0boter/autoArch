@@ -24,9 +24,10 @@ EOF
         exit 0
     fi
     # format your disk
-    printf "y\n" | mkfs.ext4 /dev/sda
-    printf "n\n1\n\n+512M\nef00\nw\ny\n" | gdisk /dev/sda && yes | mkfs.fat -F32 /dev/sda1
-    printf "n\n2\n\n\n8300\nw\ny\n" | gdisk /dev/sda && yes | mkfs.ext4 /dev/sda2
+    parted /dev/sda mklabel gpt
+    parted /dev/sda mkpart EFI fat32 1MB 513MB
+    parted /dev/sda set 1 esp on
+    parted /dev/sda mkpart System btrfs 513MB 100%
     mount /dev/sda2 /mnt && mkdir /mnt/boot && mount /dev/sda1 /mnt/boot
     # config your mirror source file
     mv -f /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
