@@ -29,26 +29,6 @@ cat >> /etc/hosts <<'EOF'
 ::1         localhost
 127.0.1.1   "$hostname".localdomain    "$hostname"
 
-# GitHub Start
-52.74.223.119 github.com
-192.30.253.119 gist.github.com
-54.169.195.247 api.github.com
-185.199.111.153 assets-cdn.github.com
-151.101.76.133 raw.githubusercontent.com
-151.101.108.133 user-images.githubusercontent.com
-151.101.76.133 gist.githubusercontent.com
-151.101.76.133 cloud.githubusercontent.com
-151.101.76.133 camo.githubusercontent.com
-151.101.76.133 avatars0.githubusercontent.com
-151.101.76.133 avatars1.githubusercontent.com
-151.101.76.133 avatars2.githubusercontent.com
-151.101.76.133 avatars3.githubusercontent.com
-151.101.76.133 avatars4.githubusercontent.com
-151.101.76.133 avatars5.githubusercontent.com
-151.101.76.133 avatars6.githubusercontent.com
-151.101.76.133 avatars7.githubusercontent.com
-151.101.76.133 avatars8.githubusercontent.com
-# GitHub End
 EOF
 
 # enable pacman color
@@ -138,20 +118,6 @@ DHCP=ipv4
 EOF
 systemctl enable systemd-networkd
 clear
-
-# read -p "Do you want to connect to WIFI?[y/n](default:y):  " wifi_chk
-# if [[ -z $wifi_chk || $wifi_chk == "y" || $wifi_chk == "Y" ]];then
-#     read -p "Please enter your wifi-name：  " wifiname
-#     read -p "Please enter your wifi-password：  " wifipasswd
-#     while [[ -z $wifiname || -z $wifipasswd ]]
-#     do
-#         echo "You need enter the wifiname and wifipasswd!!!"
-#         read -p "Please enter your wifi-name：  " ssid
-#         read -p "Please enter your wifi-password：  " passphrase
-#     done
-
-#     arch_chroot "wpa_passphrase ${ssid} ${passphrase} >> /etc/wpa_supplicant/wpa_supplicant.conf"
-# fi
 
 # Add archlinucn sources,The default source is USTC
  cat >> /etc/pacman.conf <<'EOF'

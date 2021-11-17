@@ -24,21 +24,6 @@ EOF
         exit 0
     fi
     # format your disk
-    # parted /dev/sda mklabel gpt
-    # parted /dev/sda mkpart EFI fat32 1MB 513MB
-    # parted /dev/sda set 1 esp on
-    # parted /dev/sda mkpart System btrfs 513MB 100%
-    # mkfs.fat -F32 /dev/sda1
-    # mkfs.btrfs -f /dev/sda2
-    # mount /dev/sda2 /mnt
-    # btrfs subvol create /mnt/rootfs
-    # btrfs subvol create /mnt/homefs
-    # umount /dev/sda2
-    # mount /dev/sda2 /mnt -o subvol=rootfs,compress=lzo,noatime,discard,ssd,space_cache
-    # mkdir /mnt/home
-    # mount /dev/sda2 /mnt/home -o subvol=homefs,compress=lzo,noatime,discard,ssd,space_cache
-    # mkdir /mnt/boot
-    # mount /dev/sda1 /mnt/boot
     parted /dev/sda mklabel gpt & parted /dev/sda mkpart EFI fat32 1MB 513MB & parted /dev/sda set 1 esp on & parted /dev/sda mkpart System ext4 513MB 100% & mkfs.fat -F32 /dev/sda1 & mkfs.ext4 /dev/sda2
     mount /dev/sda2 /mnt & mkdir /mnt/boot & mount /dev/sda1 /mnt/boot
     # config your mirror source file
