@@ -47,10 +47,16 @@ function cfg_desktop(){
     mkdir ~/Videos
     mkdir -p ~/.config/nvim
 
+    sudo mv /etc/v2ray/config.json /etc/v2ray/config.json.bak
+    sudo mv ./config.json /etc/v2ray/config.json
+    sudo systemctl enable v2ray
+    sudo systemctl start v2ray 
     rm ~/.bash*
 }
 function cfg_fun(){
 
+    export http_proxy=127.0.0.1:10809
+    export https_proxy=127.0.0.1:10809
     git clone https://github.com/R0boter/config.git
     wait
     git clone https://github.com/R0boter/Suckless.git
@@ -69,8 +75,6 @@ function cfg_fun(){
     sudo cp -r ./config/fonts/fira-code-nerd /usr/share/fonts/fira-code-nerd
     sudo cp ./config/fonts/local.conf /etc/fonts/local.conf
 
-    sudo mv /etc/v2ray/config.json /etc/v2ray/config.json.bak
-    sudo cp ./config/v2ray/config.json /etc/v2ray/config.json
 
   #  cd ./Suckless/dwm
   #  sudo make clean install
