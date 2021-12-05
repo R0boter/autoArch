@@ -31,7 +31,7 @@ function cfg_processor(){
 }
 
 function cfg_desktop(){
-    sudo pacman -S xorg-server xorg-xinit xclip xorg-xsetroot xorg-xrandr alsa-utils --noconfirm
+    sudo pacman -S xorg-server xorg-xinit xclip xorg-xsetroot xorg-xrandr alsa-utils v2ray --noconfirm
     for i in `seq 5`;do
         sudo sed -i '$d' /etc/X11/xinit/xinitrc
     done
@@ -69,25 +69,28 @@ function cfg_fun(){
     sudo cp -r ./config/fonts/fira-code-nerd /usr/share/fonts/fira-code-nerd
     sudo cp ./config/fonts/local.conf /etc/fonts/local.conf
 
-    cd ./Suckless/dwm
-    sudo make clean install
+    sudo mv /etc/v2ray/config.json /etc/v2ray/config.json.bak
+    sudo cp ./config/v2ray/config.json /etc/v2ray/config.json
 
-    cd ../st
-    sudo make clean install
+  #  cd ./Suckless/dwm
+  #  sudo make clean install
 
-    cd ../dmenu
-    sudo make clean install
+  #  cd ../st
+  #  sudo make clean install
 
-    cd ../slock
-    sudo make clean install
+  #  cd ../dmenu
+  #  sudo make clean install
 
-    cd ../wmname
-    sudo make clean install
+  #  cd ../slock
+  #  sudo make clean install
 
-    cd ../../
+  #  cd ../wmname
+  #  sudo make clean install
 
-    rm -rf ./config
-    rm -rf ./Suckless
+  #  cd ../../
+
+  #  rm -rf ./config
+  #  rm -rf ./Suckless
 
     # set nvim editor
     ln -s /usr/bin/nvim /usr/bin/vi
