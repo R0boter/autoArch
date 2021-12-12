@@ -31,7 +31,7 @@ function cfg_processor(){
 }
 
 function cfg_desktop(){
-    sudo pacman -S xorg-server xorg-xinit xclip xorg-xsetroot xorg-xrandr alsa-utils v2ray pkgconf --noconfirm
+    sudo pacman -S xorg-server xorg-xinit xclip xorg-xsetroot xorg-xrandr alsa-utils v2ray pkgconf archlinuxcn-keyring --noconfirm
     for i in `seq 5`;do
         sudo sed -i '$d' /etc/X11/xinit/xinitrc
     done
