@@ -24,16 +24,34 @@ EOF
         exit 0
     fi
     # format your disk
-    dd if=/dev/zero of=/dev/sda bs=512 count=1
-    parted /dev/sda mklabel gpt & parted /dev/sda mkpart EFI fat32 1MB 513MB & parted /dev/sda set 1 esp on & parted /dev/sda mkpart System ext4 513MB 100% & mkfs.fat -F32 /dev/sda1 & mkfs.ext4 /dev/sda2
-    mount /dev/sda2 /mnt & mkdir /mnt/boot & mount /dev/sda1 /mnt/boot
+    dd if=/dev/zero of=/dev/sda bs=1M
+    wait
+    parted /dev/sda mklabel gpt
+    wait
+    parted /dev/sda mkpart EFI fat32 1MB 513MB
+    wait
+    parted /dev/sda set 1 esp on
+    wait
+    parted /dev/sda mkpart System ext4 513MB 100%
+    wait
+    mkfs.fat -F32 /dev/sda1
+    wait
+    mkfs.ext4 /dev/sda2
+    wait
+    mount /dev/sda2 /mnt
+    wait
+    mkdir /mnt/boot
+    wait
+    mount /dev/sda1 /mnt/boot
+    wait
     # config your mirror source file
     mv -f /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-    curl -Lo mirrorlist https://www.archlinux.org/mirrorlist/?country=CN&protocol=http&protocol=https&ip_version=4&ip_version=6
+    curl -Lo mirrorlist "https://www.archlinux.org/mirrorlist/?country=CN&protocol=http&protocol=https&ip_version=4&ip_version=6"
     wait
     sed -i 's/^#Server/Server/g' ./mirrorlist
     mv -f ./mirrorlist /etc/pacman.d/mirrorlist
     chmod 644 /etc/pacman.d/mirrorlist
+    pacman -Sy
     # Install the base system
     # pacstrap /mnt base linux linux-firmware sudo zsh btrfs-progs
     pacstrap /mnt base linux linux-firmware sudo zsh

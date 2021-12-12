@@ -1,5 +1,6 @@
 #!/bin/bash
 # install some base programs
+<<<<<<< HEAD
 pacman -S man-db  which texinfo git wget curl unrar unzip tar gcc make fontconfig archlinux-keyring --noconfirm
 wait
 
