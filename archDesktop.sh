@@ -53,6 +53,8 @@ function cfg_fun(){
 
     git clone https://github.com/R0boter/config.git
     wait
+    git clone https://github.com/R0boter/nvim.git ~/.config/nvim
+    wait
     git clone https://github.com/R0boter/Suckless.git
     wait
 
@@ -62,7 +64,6 @@ function cfg_fun(){
     cp -r ./config/mpv ~/.config/mpv
     cp -r ./config/ranger ~/.config/ranger
     cp -r ./config/zim ~/.config/zim
-    cp -r ./config/nvim ~/.config/nvim
     cp -r ./config/zim/zshrc ~/.zshrc
     cp -r ./config/xinitrc ~/.xinitrc
 
@@ -111,7 +112,8 @@ function install_tools(){
     sudo pacman -Scc
 }
 function programs_conf(){
-    sudo pacman -S nodejs-lts-erbium python3 python3-pip --noconfirm
+    sudo pacman -S nodejs-lts-erbium npm python3 python-pip --noconfirm
+    wait
 
     mkdir ~/.pip
     echo "[global]" > ~/.pip/pip.conf
