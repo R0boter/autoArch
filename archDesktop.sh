@@ -132,7 +132,6 @@ function install_tools(){
     sudo pacman -Scc
 }
 function programs_conf(){
-<<<<<<< HEAD
     sudo pacman -S nodejs-lts-erbium npm python3 python-pip --noconfirm
     wait
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 # install some base programs
-pacman -S man-db  which texinfo git wget curl unrar unzip tar gcc make fontconfig archlinux-keyring --noconfirm
+pacman -S man-db  which texinfo git wget curl unrar unzip tar gcc make fontconfig neovim archlinux-keyring --noconfirm
 wait
 
 # set time zone
