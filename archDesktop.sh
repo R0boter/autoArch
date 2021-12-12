@@ -50,7 +50,7 @@ function cfg_desktop(){
 
     # configuration v2ray
     sudo mv /etc/v2ray/config.json /etc/v2ray/config.json.bak
-    sudo mv ./config.json /etc/v2ray/config.json
+    sudo cp ./config.json /etc/v2ray/config.json
     sudo systemctl enable v2ray
     sudo systemctl start v2ray
 
