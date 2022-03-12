@@ -23,26 +23,28 @@ EOF
     then
         exit 0
     fi
+
+		diskName=$(fdisk -l | sed -n '1, 1p' | awk '{print $2}' | sed s'/.$//')
     # format your disk
-    dd if=/dev/zero of=/dev/sda bs=1M
+    dd if=/dev/zero of=$diskName bs=1M
     wait
-    parted /dev/sda mklabel gpt
+    parted $diskName mklabel gpt
     wait
-    parted /dev/sda mkpart EFI fat32 1MB 513MB
+    parted $diskName mkpart EFI fat32 1MB 513MB
     wait
-    parted /dev/sda set 1 esp on
+    parted $diskName set 1 esp on
     wait
-    parted /dev/sda mkpart System ext4 513MB 100%
+    parted $diskName mkpart System ext4 513MB 100%
     wait
-    mkfs.fat -F32 /dev/sda1
+    mkfs.fat -F32 $diskName"1"
     wait
-    mkfs.ext4 /dev/sda2
+    mkfs.ext4 $diskName"2"
     wait
-    mount /dev/sda2 /mnt
+    mount $diskName"2" /mnt
     wait
     mkdir /mnt/boot
     wait
-    mount /dev/sda1 /mnt/boot
+    mount $diskName"1" /mnt/boot
     wait
     # config your mirror source file
     mv -f /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
