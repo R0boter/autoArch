@@ -93,32 +93,9 @@ EOF
 clear
 
 # set network
-read -p "Do you have a wifi interface?[y/n](default:y) : " chk
-if [[ -z $chk || $chk == "y" || $chk == "Y" ]];then
-    pacman -S wpa_supplicant bluez bluez-utils --noconfirm
-    cat > /etc/systemd/network/25-wireless.network <<'EOF'
-[Match]
-Name=wl*
-[Network]
-DHCP=ipv4
-EOF
-    cat > /etc/wpa_supplicant/wpa_supplicant.conf <<'EOF'
-ctrl_interface=/var/run/wpa_supplicant
-ctrl_interface_group=wheel
-update_config=1
-fast_reauth=1
-ap_scan=1
-EOF
-
-fi
-
-cat > /etc/systemd/network/20-wired.network <<'EOF'
-[Match]
-Name=en*
-[Network]
-DHCP=ipv4
-EOF
-systemctl enable systemd-networkd
+pacman -S gnome-keyring networkmanager network-manager-applet bluez --noconfirm
+systemctl enable NetworkManager.service
+systemctl enable NetworkManager-dispatcher.service
 clear
 
 # Add archlinucn sources,The default source is USTC
