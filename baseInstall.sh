@@ -1,6 +1,7 @@
 #!/bin/bash
+
 # install some base programs
-pacman -S man-db  which texinfo git wget curl unrar unzip tar gcc make fontconfig neovim archlinux-keyring --noconfirm
+pacman -S man-db  which texinfo git wget curl unrar unzip tar gcc make fontconfig neovim archlinux-keyring v2ray --noconfirm
 wait
 
 # set time zone
@@ -14,6 +15,7 @@ sed -i 's/#\(zh_CN.GBK\)/\1/' /etc/locale.gen
 locale-gen
 echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 clear
+
 # set hostname Archlinux is your hostname
 read -p "::==>> What's hostname you want use?(default is Archlinux) : " hostname
 if [ ! -n "$hostname" ];then

@@ -31,7 +31,7 @@ function cfg_processor(){
 }
 
 function cfg_desktop(){
-    sudo pacman -S xorg-server xorg-xinit xclip xorg-xsetroot xorg-xrandr alsa-utils v2ray pkgconf ripgrep fd archlinuxcn-keyring --noconfirm
+    sudo pacman -S xorg-server xorg-xinit xclip xorg-xsetroot xorg-xrandr alsa-utils pkgconf ripgrep fd archlinuxcn-keyring --noconfirm
     for i in `seq 5`;do
         sudo sed -i '$d' /etc/X11/xinit/xinitrc
     done
@@ -49,28 +49,12 @@ function cfg_desktop(){
     rm ~/.bash*
 
     # configuration v2ray
-    sudo mv /etc/v2ray/config.json /etc/v2ray/config.json.bak
-    sudo cp ./config.json /etc/v2ray/config.json
-    sudo systemctl enable v2ray
-    sudo systemctl start v2ray
-
-    # some st need include files
-    sudo ln -s /usr/include/freetype2/ft2build.h /usr/include/ft2build.h
-    sudo ln -s /usr/include/freetype2/freetype /usr/include/freetype
-
-    sudo ln -s /usr/include/harfbuzz/hb-unicode.h /usr/include/hb-unicode.h
-    sudo ln -s /usr/include/harfbuzz/hb-font.h /usr/include/hb-font.h
-    sudo ln -s /usr/include/harfbuzz/hb-face.h /usr/include/hb-face.h
-    sudo ln -s /usr/include/harfbuzz/hb-set.h /usr/include/hb-set.h
-    sudo ln -s /usr/include/harfbuzz/hb-draw.h /usr/include/hb-draw.h
-    sudo ln -s /usr/include/harfbuzz/hb-deprecated.h /usr/include/hb-deprecated.h
-    sudo ln -s /usr/include/harfbuzz/hb-map.h /usr/include/hb-map.h
-    sudo ln -s /usr/include/harfbuzz/hb-shape.h /usr/include/hb-shape.h
-    sudo ln -s /usr/include/harfbuzz/hb-shape-plan.h /usr/include/hb-shape-plan.h
-    sudo ln -s /usr/include/harfbuzz/hb-style.h /usr/include/hb-style.h
-    sudo ln -s /usr/include/harfbuzz/hb-version.h /usr/include/hb-version.h
-    sudo ln -s /usr/include/harfbuzz/hb-ft.h /usr/include/hb-ft.h
+    # sudo mv /etc/v2ray/config.json /etc/v2ray/config.json.bak
+    # sudo cp ./config.json /etc/v2ray/config.json
+    # sudo systemctl enable v2ray
+    # sudo systemctl start v2ray
 }
+
 function cfg_fun(){
 
     export http_proxy=127.0.0.1:10809
@@ -92,23 +76,8 @@ function cfg_fun(){
     cp -r ./config/zim/zshrc ~/.zshrc
     cp -r ./config/xinitrc ~/.xinitrc
 
-    sudo cp -r ./config/fonts/fira-code-nerd /usr/share/fonts/fira-code-nerd
+    sudo cp -r ./config/fonts/operator-mono-nerd-font /usr/share/fonts/operator-mono-nerd-font
     sudo cp ./config/fonts/local.conf /etc/fonts/local.conf
-
-    cd ./Suckless/dmenu
-    sudo make clean install
-
-    cd ../slock
-    sudo make clean install
-
-    cd ../wmname
-    sudo make clean install
-
-    cd ../st
-    sudo make clean install
-
-    cd ../dwm
-    sudo make clean install
 
     # set nvim editor
     ln -s /usr/bin/nvim /usr/bin/vi
@@ -128,7 +97,7 @@ function cfg_zh(){
 
 function install_tools(){
     sudo pacman -Syu
-    sudo pacman -S ranger ueberzug mpv xcompmgr habak patch firefox dunst libnotify flameshot --noconfirm
+    sudo pacman -S ranger ueberzug mpv picom habak patch firefox dunst libnotify flameshot --noconfirm
     sudo pacman -Scc
 }
 function programs_conf(){

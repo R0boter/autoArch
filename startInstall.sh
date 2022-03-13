@@ -18,13 +18,13 @@ then
    ::==>> Let's start your archlife!!!，If your are not ready，you can use ctrl-c to end!!!
 
 EOF
+		diskName=$(fdisk -l | sed -n '1, 1p' | awk '{print $2}' | sed s'/.$//')
     read -p "::==>> Are you sure format your sda[y/n]: " sure_str
     if [[ $sure_str != "y" && $sure_str != "Y" ]]
     then
         exit 0
     fi
 
-		diskName=$(fdisk -l | sed -n '1, 1p' | awk '{print $2}' | sed s'/.$//')
     # format your disk
     dd if=/dev/zero of=$diskName bs=1M
     wait
