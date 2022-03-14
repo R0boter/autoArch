@@ -31,7 +31,7 @@ function cfg_processor(){
 }
 
 function cfg_desktop(){
-    sudo pacman -S xorg-server xorg-xinit xclip xorg-xsetroot xorg-xrandr pulseaudio pulseaudio-bluetooth pavucontrol pkgconf ripgrep fd archlinuxcn-keyring --noconfirm
+    sudo pacman -S xorg-server xorg-xinit xclip xorg-xsetroot xorg-xrandr pulseaudio pulseaudio-bluetooth pavucontrol pkgconf ripgrep fd tmux tlp tlp-rdw --noconfirm
     for i in `seq 5`;do
         sudo sed -i '$d' /etc/X11/xinit/xinitrc
     done
@@ -73,6 +73,7 @@ function cfg_fun(){
     cp -r ./config/mpv ~/.config/mpv
     cp -r ./config/ranger ~/.config/ranger
     cp -r ./config/zim ~/.config/zim
+    cp -r ./config/tmux.conf ~/.tmux.conf
     cp -r ./config/zim/zshrc ~/.zshrc
     cp -r ./config/xinitrc ~/.xinitrc
 
