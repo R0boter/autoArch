@@ -71,6 +71,8 @@ function cfg_fun(){
     wait
     git clone git@github.com:R0boter/Suckless.git
     wait
+		git clone https://aur.archlinux.org/paru.git
+		wait
 
     cp -r ./config/Wallpapers/* ~/Pictures/Wallpapers/
     cp -r ./config/dunst ~/.config/dunst
