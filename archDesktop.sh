@@ -48,7 +48,7 @@ function cfg_desktop(){
     mkdir -p ~/.config/
     rm ~/.bash*
 
-		sudo dd if=/dev/zero o=/swapfile bs=1M count=12288 status=progress
+		sudo dd if=/dev/zero of=/swapfile bs=1M count=12288 status=progress
 		sudo chmod 600 /swapfile
 		mkswap /swapfile
 		swapon /swapfile
