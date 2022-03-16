@@ -106,7 +106,7 @@ function cfg_zh(){
 
 function install_tools(){
     sudo pacman -Syu
-    sudo pacman -S ranger ueberzug mpv picom habak patch firefox dunst libnotify flameshot --noconfirm
+    sudo pacman -S ranger ueberzug mpv picom habak patch firefox dunst libnotify flameshot telegram-desktop --noconfirm
     sudo pacman -Scc
 }
 function programs_conf(){
