@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install some base programs
-pacman -S man-db  which texinfo git wget curl unrar unzip tar gcc make fontconfig neovim archlinux-keyring v2ray --noconfirm
+pacman -S man-db  which texinfo git wget curl unrar unzip tar gcc make fontconfig neovim archlinux-keyring net-tools v2ray fakeroot rust nodejs-lts-gallium python3 --noconfirm
 wait
 
 # set time zone
@@ -96,6 +96,7 @@ clear
 pacman -S gnome-keyring networkmanager network-manager-applet bluez --noconfirm
 systemctl enable NetworkManager.service
 systemctl enable NetworkManager-dispatcher.service
+systemctl enable v2ray.service
 clear
 
 # Add archlinucn sources,The default source is USTC

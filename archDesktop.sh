@@ -76,6 +76,7 @@ function cfg_fun(){
     cp -r ./config/dunst ~/.config/dunst
     cp -r ./config/fcitx5 ~/.config/fcitx5
     cp -r ./config/mpv ~/.config/mpv
+    cp -r ./config/picom ~/.config/picom
     cp -r ./config/ranger ~/.config/ranger
     cp -r ./config/zim ~/.config/zim
     cp -r ./config/tmux.conf ~/.tmux.conf
@@ -107,7 +108,7 @@ function install_tools(){
     sudo pacman -Scc
 }
 function programs_conf(){
-    sudo pacman -S nodejs-lts-erbium npm python3 python-pip --noconfirm
+    sudo pacman -S  npm python-pip --noconfirm
     wait
 
     mkdir ~/.pip
