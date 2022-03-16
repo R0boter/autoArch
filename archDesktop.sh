@@ -64,14 +64,12 @@ function cfg_desktop(){
 
 function cfg_fun(){
 
-    export http_proxy=127.0.0.1:10809
-    export https_proxy=127.0.0.1:10809
     cd ~/Documents
-    git clone https://github.com/R0boter/config.git
+    git clone git@github.com:R0boter/config.git
     wait
-    git clone https://github.com/R0boter/nvim.git ~/.config/nvim
+    git clone git@github.com:R0boter/nvim.git ~/.config/nvim
     wait
-    git clone https://github.com/R0boter/Suckless.git
+    git clone git@github.com:R0boter/Suckless.git
     wait
 
     cp -r ./config/Wallpapers/* ~/Pictures/Wallpapers/
