@@ -50,9 +50,9 @@ function cfg_desktop(){
 
 		sudo dd if=/dev/zero of=/swapfile bs=1M count=12288 status=progress
 		sudo chmod 600 /swapfile
-		mkswap /swapfile
-		swapon /swapfile
-		sudo echo '/swapfile none swap defaults 0 0' >> /etc/fstab
+		sudo mkswap /swapfile
+		sudo swapon /swapfile
+		sudo sed -i '$a \/swapfile none swap defaults 0 0' /etc/fstab
 
 
     # configuration v2ray
