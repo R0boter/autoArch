@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install some base programs
-pacman -S man-db  which texinfo git wget curl unrar unzip tar gcc make fontconfig neovim archlinux-keyring net-tools v2ray fakeroot rust nodejs-lts-gallium python3 --noconfirm
+pacman -S man-db which texinfo git wget curl unrar unzip tar gcc make fontconfig neovim archlinuxcn-keyring net-tools v2ray fakeroot rust nodejs-lts-gallium python3 --noconfirm
 wait
 
 # set time zone
@@ -13,19 +13,19 @@ sed -i 's/#\(en_US.UTF-8\)/\1/' /etc/locale.gen
 sed -i 's/#\(zh_CN.UTF-8\)/\1/' /etc/locale.gen
 sed -i 's/#\(zh_CN.GBK\)/\1/' /etc/locale.gen
 locale-gen
-echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+echo 'LANG=en_US.UTF-8' >/etc/locale.conf
 clear
 
 # set hostname Archlinux is your hostname
 read -p "::==>> What's hostname you want use?(default is Archlinux) : " hostname
-if [ ! -n "$hostname" ];then
-    echo 'Archlinux' > /etc/hostname
+if [ ! -n "$hostname" ]; then
+  echo 'Archlinux' >/etc/hostname
 else
-    echo $hostname > /etc/hostname
+  echo $hostname >/etc/hostname
 fi
 
 # set locale hosts file
-cat >> /etc/hosts <<'EOF'
+cat >>/etc/hosts <<'EOF'
 
 127.0.0.1   localhost
 ::1         localhost
@@ -41,13 +41,13 @@ sed -i '/Color/a\ILoveCandy' /etc/pacman.conf
 bootctl --path=/boot install
 wait
 
-cat > /boot/loader/loader.conf <<'EOF'
+cat >/boot/loader/loader.conf <<'EOF'
 #timeout 3
 #console-mode keep
 default arch
 EOF
 
-cat > /boot/loader/entries/arch.conf <<'EOF'
+cat >/boot/loader/entries/arch.conf <<'EOF'
 title    Arch Linux
 linux   /vmlinuz-linux
 initrd  /initramfs-linux.img
@@ -56,26 +56,24 @@ EOF
 clear
 # set root passwd
 read -p "::==>> Please set root password(default is toor) : " rpass
-if [ ! -n "$rpass" ];then
-    rpass="toor"
+if [ ! -n "$rpass" ]; then
+  rpass="toor"
 fi
 echo "root:$rpass" | chpasswd
 
 # creat normal user username and set passwd
 echo "::==>> You need enter the username, Usually 5-8 characters!!!"
 read -p "::==>> Please set your username : " uname
-while [[ -z $uname ]]
-do
-echo "::==>> You need enter the username, Usually 5-8 characters!!!"
-read -p "::==>> Please set your username : " uname
+while [[ -z $uname ]]; do
+  echo "::==>> You need enter the username, Usually 5-8 characters!!!"
+  read -p "::==>> Please set your username : " uname
 done
 
 echo "::==>> You need enter the password, Usually 5-16 characters!!!"
 read -p "::==>> Please set your password : " upass
-while [[ -z $upass ]]
-do
-echo "::==>> You need enter the password, Usually 5-16 characters!!!"
-read -p "::==>> Please set your password : " upass
+while [[ -z $upass ]]; do
+  echo "::==>> You need enter the password, Usually 5-16 characters!!!"
+  read -p "::==>> Please set your password : " upass
 done
 
 useradd -m -g users -s /usr/bin/zsh -G wheel,uucp $uname && echo "$uname:$upass" | chpasswd
@@ -85,7 +83,7 @@ sed -i '/NOPASSWD/s/^#\ //' /etc/sudoers
 
 # set autologin
 mkdir /etc/systemd/system/getty@tty1.service.d/
-cat > /etc/systemd/system/getty@tty1.service.d/override.conf <<EOF
+cat >/etc/systemd/system/getty@tty1.service.d/override.conf <<EOF
 [Service]
 ExecStart=
 ExecStart=-/usr/bin/agetty --autologin $uname --noclear %I \$TERM
@@ -101,7 +99,7 @@ systemctl enable v2ray.service
 clear
 
 # Add archlinucn sources,The default source is USTC
- cat >> /etc/pacman.conf <<'EOF'
+cat >>/etc/pacman.conf <<'EOF'
 [archlinuxcn]
 #SigLevel = Optional TrustedOnly
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
