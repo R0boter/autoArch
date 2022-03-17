@@ -49,7 +49,7 @@ function cfg_desktop() {
   rm ~/.bash*
 
   sudo dd if=/dev/zero of=/swapfile bs=1M count=12288 status=progress
-     sudo chmod 600 /swapfile
+  sudo chmod 600 /swapfile
   sudo mkswap /swapfile
   sudo swapon /swapfile
   sudo sed -i '$a \/swapfile none swap defaults 0 0' /etc/fstab
@@ -108,7 +108,7 @@ function cfg_zh() {
 
 function install_tools() {
   sudo pacman -Syu
-  sudo pacman -S ranger ueberzug mpv picom feh patch firefox dunst libnotify flameshot telegram-desktop --noconfirm
+  sudo pacman -S ranger ueberzug mpv picom feh patch firefox librewolf dunst libnotify flameshot telegram-desktop --noconfirm
   sudo pacman -Scc
 }
 function programs_conf() {
