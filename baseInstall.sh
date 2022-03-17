@@ -93,9 +93,10 @@ EOF
 clear
 
 # set network
-pacman -S gnome-keyring networkmanager network-manager-applet bluez --noconfirm
+pacman -S gnome-keyring networkmanager network-manager-applet bluez bluez-utils --noconfirm
 systemctl enable NetworkManager.service
 systemctl enable NetworkManager-dispatcher.service
+systemctl enable bluetooth.service
 systemctl enable v2ray.service
 clear
 

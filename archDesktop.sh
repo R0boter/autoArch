@@ -81,16 +81,20 @@ function cfg_fun(){
     cp -r ./config/picom ~/.config/picom
     cp -r ./config/ranger ~/.config/ranger
     cp -r ./config/zim ~/.config/zim
+    cp -r ./config/gtk/gtk-3.0 ~/.config/gtk-3.0
     cp -r ./config/tmux.conf ~/.tmux.conf
     cp -r ./config/zim/zshrc ~/.zshrc
     cp -r ./config/xinitrc ~/.xinitrc
 
     sudo cp -r ./config/fonts/operator-mono-nerd-font /usr/share/fonts/operator-mono-nerd-font
+		sudo cp -r ./config/gtk/gruvbox_dark /usr/share/icons/gruvbox_dark
+		sudo cp -r ./config/gtk/volantes_cursors /usr/share/icons/volantes_cursors
+		sudo cp -r ./config/gtk/Gruvbox-Dark /usr/share/themes/Gruvbox-Dark
     sudo cp ./config/fonts/local.conf /etc/fonts/local.conf
 
     # set nvim editor
-    ln -s /usr/bin/nvim /usr/bin/vi
-    ln -s /usr/bin/nvim /usr/bin/vim
+    sudo ln -s /usr/bin/nvim /usr/bin/vi
+    sudo ln -s /usr/bin/nvim /usr/bin/vim
 
 }
 function cfg_zh(){
