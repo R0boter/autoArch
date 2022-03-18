@@ -121,6 +121,8 @@ function programs_conf() {
   sudo pip install neovim
 
   npm config set registry https://registry.npm.taobao.org
+
+  rustup install stable
 }
 
 wait

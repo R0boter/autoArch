@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install some base programs
-pacman -S man-db which texinfo git wget curl unrar unzip tar gcc make fontconfig neovim archlinuxcn-keyring net-tools v2ray fakeroot rust nodejs-lts-gallium python3 --noconfirm
+pacman -S man-db which texinfo git wget curl unrar unzip tar gcc make fontconfig neovim archlinuxcn-keyring net-tools v2ray fakeroot rustup nodejs-lts-gallium python3 --noconfirm
 wait
 
 # set time zone
