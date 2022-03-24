@@ -83,6 +83,7 @@ function cfg_fun() {
   cp -r ./config/picom ~/.config/picom
   cp -r ./config/ranger ~/.config/ranger
   cp -r ./config/zim ~/.config/zim
+  cp -r ./config/qt5ct ~/.config/qt5ct
   cp -r ./config/gtk/gtk-3.0 ~/.config/gtk-3.0
   cp -r ./config/tmux.conf ~/.tmux.conf
   cp -r ./config/zim/zshrc ~/.zshrc
