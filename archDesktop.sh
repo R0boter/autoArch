@@ -31,11 +31,14 @@ function cfg_processor() {
 }
 
 function cfg_desktop() {
-  sudo pacman -S xorg-server xorg-xinit xclip xorg-xsetroot xorg-xrandr pulseaudio pulseaudio-bluetooth pulseaudio-alsa pavucontrol pkgconf ripgrep fd tmux tlp tlp-rdw --noconfirm
+  sudo pacman -S xorg-server xorg-xinit xclip xorg-xsetroot xorg-xrandr pulseaudio pulseaudio-bluetooth pulseaudio-alsa pavucontrol pkgconf ripgrep fd tmux tlp tlp-rdw qt5ct --noconfirm
   for i in $(seq 5); do
     sudo sed -i '$d' /etc/X11/xinit/xinitrc
   done
   echo 'export PATH=$HOME/.local/bin:$PATH' >>~/.zprofile
+  echo 'export XCURSOR_THEME="volantes_cursors"' >>~/.zprofile
+  echo 'export XCURSOR_SIZE="16"' >>~/.zprofile
+  echo 'export QT_QPA_PLATFORMTHEME="qt5ct"' >>~/.zprofile
   echo 'if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then' >>~/.zprofile
   echo '  exec startx' >>~/.zprofile
   echo 'fi' >>~/.zprofile
