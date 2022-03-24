@@ -57,11 +57,10 @@ function cfg_desktop() {
   sudo swapon /swapfile
   sudo sed -i '$a \/swapfile none swap defaults 0 0' /etc/fstab
 
-  # configuration v2ray
-  # sudo mv /etc/v2ray/config.json /etc/v2ray/config.json.bak
-  # sudo cp ./config.json /etc/v2ray/config.json
-  # sudo systemctl enable v2ray
-  # sudo systemctl start v2ray
+  # configuration tlp
+  sudo systemctl enable tlp.service
+  sudo systemctl mask systemd-rfkill.service
+  sudo systemctl mask systemd-rfkill.socket
 }
 
 function cfg_fun() {
