@@ -78,6 +78,7 @@ function cfg_fun() {
   cp -r ./config/Wallpapers/* ~/Pictures/Wallpapers/
   cp -r ./config/dunst ~/.config/dunst
   cp -r ./config/fcitx5 ~/.config/fcitx5
+  mv ~/.config/fcitx5/gruvbox-dark ~/.local/share/fcitx5/themes/gruvbox-dark
   cp -r ./config/mpv ~/.config/mpv
   cp -r ./config/picom ~/.config/picom
   cp -r ./config/ranger ~/.config/ranger
