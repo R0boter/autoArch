@@ -49,6 +49,7 @@ EOF
   curl -Lo mirrorlist "https://www.archlinux.org/mirrorlist/?country=CN&protocol=http&protocol=https&ip_version=4&ip_version=6"
   wait
   sed -i 's/^#Server/Server/g' ./mirrorlist
+  sed -i '7,25d' ./mirrorlist
   mv -f ./mirrorlist /etc/pacman.d/mirrorlist
   chmod 644 /etc/pacman.d/mirrorlist
   pacman -Sy
