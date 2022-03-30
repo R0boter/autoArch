@@ -76,7 +76,7 @@ while [[ -z $upass ]]; do
   read -p "::==>> Please set your password : " upass
 done
 
-useradd -m -g users -s /usr/bin/zsh -G wheel,uucp $uname && echo "$uname:$upass" | chpasswd
+useradd -m -g users -s /usr/bin/zsh -G wheel,uucp,lp,video $uname && echo "$uname:$upass" | chpasswd
 
 # set sudo file
 sed -i '/NOPASSWD/s/^#\ //' /etc/sudoers
