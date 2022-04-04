@@ -91,7 +91,7 @@ EOF
 clear
 
 # set network
-pacman -S gnome-keyring dhclient networkmanager network-manager-applet bluez bluez-utils --noconfirm
+pacman -S gnome-keyring dhclient networkmanager network-manager-applet bluez blueberry --noconfirm
 systemctl enable NetworkManager.service
 systemctl enable NetworkManager-dispatcher.service
 systemctl enable bluetooth.service
