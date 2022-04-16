@@ -31,7 +31,7 @@ function cfg_processor() {
 }
 
 function cfg_desktop() {
-  sudo pacman -S xorg-server xorg-xinit xclip xorg-xsetroot xorg-xrandr light pulseaudio pulseaudio-bluetooth pulseaudio-alsa pavucontrol pkgconf ripgrep fd tmux tlp tlp-rdw qt5ct --noconfirm
+  sudo pacman -S xorg-server xorg-xinit xclip xorg-xsetroot xorg-xrandr light pulseaudio pulseaudio-bluetooth pulseaudio-alsa pavucontrol pkgconf ripgrep fd tmux tlp tlp-rdw qt5ct yt-dlp --noconfirm
   for i in $(seq 5); do
     sudo sed -i '$d' /etc/X11/xinit/xinitrc
   done
