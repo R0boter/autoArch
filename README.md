@@ -29,7 +29,7 @@ pacman -S git
 ```sh
 git clone --depth=1 https://github.com/r0boter/autoArch
 ```
-详细的脚本执行流程及注意事项，请参考我博客中的[这篇文章](https://roboter.ga/Archlinux-安装脚本)
+详细的脚本执行流程及注意事项，请参考我博客中的[这篇文章](https://mrrobot.eu.org/Archlinux-安装脚本)
 
 ## 初始化脚本
 
@@ -53,4 +53,4 @@ git clone --depth=1 https://github.com/r0boter/autoArch
 
 但您可以作为参考，用于编写你自己的脚本
 
-详细的脚本执行流程及脚本介绍，请参考我博客中的[这篇文章](https://roboter.ga/Archlinux-桌面环境安装脚本)
+详细的脚本执行流程及脚本介绍，请参考我博客中的[这篇文章](https://mrrobot.eu.org/Archlinux-桌面环境安装脚本)
